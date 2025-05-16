@@ -9,8 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.json());
-
 app.use('/api', router);
 
 app.get("/", (req, res) => {
@@ -18,10 +16,6 @@ app.get("/", (req, res) => {
         message: "Server is running",
         data: null,
     });
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
 });
 
 export default app;

@@ -11,7 +11,7 @@ export const checkout = (req: Request, res: Response): void => {
                 message: 'Voucher tidak valid',
             }
         });
-        return
+        return;
     }
 
     const potongan = (voucherPersen / 100) * hargaBarang;

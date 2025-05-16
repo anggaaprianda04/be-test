@@ -1,5 +1,17 @@
 import request from 'supertest';
 import app from '../src/app';
+import { Server } from 'http';
+import { PORT } from '../src/utils/env'
+
+let server: Server;
+
+beforeAll(() => {
+    server = app.listen(PORT);
+})
+
+afterAll(() => {
+    server.close();
+})
 
 describe('POST /api/checkout', () => {
     it('should return correct discount and point', async () => {
