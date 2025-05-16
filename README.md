@@ -1,0 +1,1 @@
+- Untuk soal 1,2 dan 3 untuk hasil saya menggunakan testing dengan jest
