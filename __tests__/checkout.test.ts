@@ -29,6 +29,25 @@ describe('POST /api/checkout', () => {
         });
     });
 
+    it('should handle voucherPersen as string number and convert correctly', async () => {
+        const res = await request(app)
+            .post('/api/checkout')
+            .send({ voucherPersen: "50" });
+
+        expect(res.status).toBe(200);
+        expect(res.body.data.discount).toBe(2500000);
+        expect(res.body.data.rewardPoints).toBe(50000);
+    });
+
+    it('should return 400 if voucherPersen is null', async () => {
+        const res = await request(app)
+            .post('/api/checkout')
+            .send({ voucherPersen: null });
+
+        expect(res.status).toBe(400);
+        expect(res.body.meta.message).toBe('Voucher tidak valid');
+    });
+
     it('should return 400 if voucher is invalid', async () => {
         const res = await request(app)
             .post('/api/checkout')

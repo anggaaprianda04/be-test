@@ -4,14 +4,15 @@ export const checkout = (req: Request, res: Response): void => {
     const hargaBarang = 5000000;
     const { voucherPersen } = req.body;
 
-    if (!voucherPersen || voucherPersen <= 0 || voucherPersen > 100) {
+    const isValidVoucher = voucherPersen && voucherPersen > 0 && voucherPersen <= 100;
+
+    if (!isValidVoucher) {
         res.status(400).json({
             meta: {
                 status: 400,
                 message: 'Voucher tidak valid',
             }
         });
-        return;
     }
 
     const potongan = (voucherPersen / 100) * hargaBarang;
